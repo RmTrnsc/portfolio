@@ -1,26 +1,63 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fffffb;
+  --foreground: #2a4d3a;
+  --secondary-foreground: #555555;
+  --header: #2a4d3a;
+  --btn-bg-primary: #61776b;
+  --btn-bg-secondary: #ffffff;
+  --btn-secondary-border: #61776b;
+  --link: #2a4d3a;
+  --hovering: #a8c4b8;
+  --card-background: #ffffff;
+  --card-border: #d8d8d8;
+  --section-background: #ffffff;
+  --section-border: #d8d8d8;
+  --navigation-background: #2a4d3a;
+  --navigation-foreground: #ffffff;
+  --footer-background: #2a4d3a;
+  --footer-foreground: #ffffff;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-header: var(--font-poppins);
+  --font-text: var(--font-lato);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+[data-theme="dark"] {
+  --background: #2a4d3a;
+  --foreground: #fffffb;
+  --secondary-foreground: #d8d8d8;
+  --header: #8ba898;
+  --btn-secondary-border: #d8d8d8;
+  --link: #a8c4b8;
+  --hovering: #6b8c60;
+  --card-background: #122b22;
+  --card-border: transparent;
+  --section-background: #122b22;
+  --section-border: transparent;
+  --navigation-background: #1a3a2f;
+  --navigation-foreground: #61776b;
+  --footer-background: #1a3a2f;
+  --footer-foreground: #61776b;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-lato);
+}
+
+button {
+  font-family: var(--font-nunito);
+  border-radius: 1rem;
+  padding: 0.5rem 1rem;
+  border-width: 0.125rem;
+  border-color: transparent;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: fit-content;
+  font-size: 1.1rem
 }
