@@ -1,6 +1,6 @@
 import PrimaryButton from "./ui/primary-button";
-import ArrowRight from "./ui/icon/arrowRight";
 import Link from "next/link";
+import ArrowRight from "./ui/icons/arrowRight";
 
 export default function Home() {
   return (
