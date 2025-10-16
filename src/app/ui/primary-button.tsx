@@ -6,7 +6,7 @@ interface PrimaryButtonProps {
 
 export default function PrimaryButton({ children }: PrimaryButtonProps) {
   return (
-    <Button className="text-white bg-[var(--btn-bg-primary)]">
+    <Button className="text-[#fffffb] bg-[var(--btn-bg-primary)] mx-auto py-1 px-2">
       {children}
     </Button>
   );

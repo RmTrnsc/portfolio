@@ -22,7 +22,7 @@ export default function Header() {
 
   return (
     <header className="flex items-center justify-between">
-      <h1 className="flex items-center gap-4">
+      <h1 className="flex items-center gap-2">
         <img
           src="/photo.jpeg"
           alt="profile picture"
@@ -31,8 +31,8 @@ export default function Header() {
           className="rounded-4xl"
         />
         <p className="flex flex-col">
-          <span className="font-header">Romain Tournesac</span>
-          <small>Développeur web fullstack</small>
+          <span className="font-header font-extrabold text-3xl tracking-widest">Romain Tournesac</span>
+          <small className="italic">Développeur web fullstack</small>
         </p>
       </h1>
       <div>

@@ -9,7 +9,7 @@ export default function ThemeIcon({
   onChange: (isDark: boolean) => void;
 }) {
   return isDarkMode ? (
-    <Button onClick={() => onChange(false)} className="bg-transparent">
+    <Button onClick={() => onChange(false)}>
       <SunIcon className="size-6" />
     </Button>
   ) : (

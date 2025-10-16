@@ -1,25 +1,19 @@
 import type { Metadata } from "next";
-import { Poppins, Lato, Nunito } from "next/font/google";
+import { Lato, Caveat } from "next/font/google";
 import "./globals.css";
 import Header from "./components/header";
 import Footer from "./components/footer";
 
-const poppins = Poppins({
-  variable: "--font-poppins",
+const caveat = Caveat({
+  variable: "--font-caveat",
   subsets: ["latin"],
-  weight: ["700"],
+  weight: "variable",
 });
 
 const lato = Lato({
   variable: "--font-lato",
   subsets: ["latin"],
   weight: ["400"],
-});
-
-const nunito = Nunito({
-  variable: "--font-nunito",
-  subsets: ["latin"],
-  weight: ["600"],
 });
 
 export const metadata: Metadata = {
@@ -35,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${poppins.variable} ${lato.variable} ${nunito.variable} grid grid-rows-[4em_1fr_2em] antialiased p-4 min-h-screen transition-colors duration-150`}
+        className={`${caveat.variable} ${lato.variable} grid grid-rows-[4em_1fr_2em] antialiased min-h-screen p-2 transition-colors duration-150`}
       >
         <Header />
         {children}

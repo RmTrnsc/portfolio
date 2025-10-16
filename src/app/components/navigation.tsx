@@ -24,14 +24,14 @@ export default function Navigation() {
     <nav aria-label="Chemin de navigation">
       <ol className="flex items-center gap-2 text-sm">
         <li>
-          <Link href="/">Accueil</Link>
+          <Link href="/" className="!no-underline">Accueil</Link>
         </li>
         {segments.map((segment) => (
-          <li key={segment.path} className="flex items-center gap-2">
+          <li key={segment.path} className="flex items-baseline gap-2">
             <span className="text-gray-400">/</span>
             <Link
               href={segment.path}
-              className={pathname === segment.path ? "font-header" : ""}
+              className={`${pathname === segment.path ? "!font-action text-xl" : ""} !no-underline` }
             >
               {segment.label}
             </Link>

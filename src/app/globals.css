@@ -21,8 +21,9 @@
 }
 
 @theme inline {
-  --font-header: var(--font-poppins);
+  --font-header: var(--font-caveat);
   --font-text: var(--font-lato);
+  --font-action: var(--font-caveat);
 }
 
 [data-theme="dark"] {
@@ -50,14 +51,14 @@ body {
 }
 
 button {
-  font-family: var(--font-nunito);
+  font-family: var(--font-caveat);
   border-radius: 1rem;
-  padding: 0.5rem 1rem;
   border-width: 0.125rem;
   border-color: transparent;
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.25rem;
   width: fit-content;
-  font-size: 1.1rem
+  font-size: 1.5rem;
+  font-weight: 700;
 }
