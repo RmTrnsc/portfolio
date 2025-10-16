@@ -3,5 +3,5 @@ export default function PresentationLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <main className="mt-4">{children}</main>;
+  return <main className="mt-4 p-2">{children}</main>;
 } 
