@@ -52,7 +52,6 @@ body {
 
 button {
   font-family: var(--font-caveat);
-  border-radius: 1rem;
   border-width: 0.125rem;
   border-color: transparent;
   display: inline-flex;
@@ -61,4 +60,11 @@ button {
   width: fit-content;
   font-size: 1.5rem;
   font-weight: 700;
+}
+
+button,
+input,
+textarea,
+select {
+  border-radius: 1rem !important;
 }

@@ -4,8 +4,8 @@ import Link from "next/link";
 
 export default function Presentation() {
   return (
-    <main className="relative grid h-full items-center gap-4">
-      <div className="grid gap-4">
+    <main className="relative grid gap-8">
+      <div className="grid gap-3">
         <p className="text-justify indent-4">
           Je suis Romain, développeur passionné par la création d'applications
           web.
@@ -24,14 +24,14 @@ export default function Presentation() {
         </p>
         <p className="text-justify">
           Quand je ne code pas, j'aime me tenir au courant des nouveautés tech,
-          sortir avec mes amis, jouer à des jeux vidéo...
+          sortir avec mes amis, ma famille, jouer à des jeux vidéo...
         </p>
-        <p className="text-justify">
+        <p className="font-header text-2xl font-bold text-justify mx-auto">
           Bienvenue sur mon portfolio et bonne visite !
         </p>
       </div>
-      <div className="grid gap-4">
-        <p className="text-justify">
+      <div className="grid gap-3">
+        <p className="text-justify italic">
           Vous pouvez me contacter via les réseaux, ci-dessous, ou par email sur
           la page de{" "}
           <Link

@@ -6,7 +6,7 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="grid grid-rows-[1em_1fr] p-2">
+    <div className="grid grid-rows-[1em_1fr]">
       <Navigation />
       {children}
     </div>

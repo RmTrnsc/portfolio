@@ -3,5 +3,5 @@ export default function ContactLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <main className="mt-4">{children}</main>;
+  return <main className="mt-6">{children}</main>;
 } 
