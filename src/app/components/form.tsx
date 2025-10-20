@@ -51,7 +51,6 @@ export default function Form<T extends FieldValues>({
   submitText = "Envoyer",
 }: FormProps<T>) {
   const {
-    register,
     control,
     handleSubmit,
     formState: { errors },
