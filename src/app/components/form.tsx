@@ -69,7 +69,7 @@ export default function Form<T extends FieldValues>({
         {fields
           .filter((field) => field.show)
           .map((field, index) => (
-            <Field key={index} className="grid gap-2">
+            <Field key={index} className="grid gap-3">
               <Label htmlFor={field.name}>{field.label}</Label>
               {field.type === "select" ? (
                 <Controller

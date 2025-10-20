@@ -82,7 +82,7 @@ export default function Contact() {
     <main className="w-full max-w-lg mx-auto">
       <Form<ContactFormData>
         title="Un nouveau projet, une évolution de vos besoins ou tout simplement une question ?"
-        description="Alors ce formulaire est pour vous, je vous répondrai dans les plus brefs délais !"
+        description="Alors ce formulaire est fait pour vous, je vous répondrai dans les plus brefs délais !"
         fields={fields}
         onSubmit={handleSubmit}
         schema={contactSchema}
