@@ -1,5 +1,5 @@
 import { MoonIcon, SunIcon } from "@heroicons/react/24/solid";
-import Button from "./button";
+import CustomButton from "./button";
 
 export default function ThemeIcon({
   isDarkMode,
@@ -9,12 +9,12 @@ export default function ThemeIcon({
   onChange: (isDark: boolean) => void;
 }) {
   return isDarkMode ? (
-    <Button onClick={() => onChange(false)}>
+    <CustomButton onClick={() => onChange(false)}>
       <SunIcon className="size-6" />
-    </Button>
+    </CustomButton>
   ) : (
-    <Button onClick={() => onChange(true)}>
+    <CustomButton onClick={() => onChange(true)}>
       <MoonIcon className="size-6" />
-    </Button>
+    </CustomButton>
   );
 }

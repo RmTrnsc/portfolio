@@ -6,7 +6,7 @@ interface PrimaryButtonProps {
   className?: string;
 }
 
-export default function PrimaryButton({
+export default function CustomButton({
   children,
   onClick,
   className = "",

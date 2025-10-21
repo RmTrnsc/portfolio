@@ -1,6 +1,9 @@
 "use client";
+
 import Form, { FormField } from "app/components/form";
 import { z } from "zod";
+import { useState } from "react";
+import SuccessDialog from "./success-dialog";
 
 const contactSchema = z.object({
   lastname_name: z
@@ -30,8 +33,22 @@ const contactSchema = z.object({
 type ContactFormData = z.infer<typeof contactSchema>;
 
 export default function Contact() {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
   const handleSubmit = async (data: ContactFormData) => {
-    console.log("Données soumises :", data);
+    const response = await fetch("/api/send", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      throw new Error("Erreur lors de l'envoi du message");
+    }
+
+    await response.json();
   };
 
   const fields: FormField<ContactFormData>[] = [
@@ -71,7 +88,7 @@ export default function Contact() {
     },
     {
       type: "textarea",
-      label: "Description de votre projet",
+      label: "Décrivez votre projet, en quelques mots",
       name: "project_description",
       show: true,
       validation: { required: false },
@@ -85,7 +102,13 @@ export default function Contact() {
         description="Alors ce formulaire est fait pour vous, je vous répondrai dans les plus brefs délais !"
         fields={fields}
         onSubmit={handleSubmit}
+        onSuccess={() => setIsDialogOpen(true)}
         schema={contactSchema}
+      />
+
+      <SuccessDialog 
+        isOpen={isDialogOpen}
+        onClose={() => setIsDialogOpen(false)}
       />
     </main>
   );

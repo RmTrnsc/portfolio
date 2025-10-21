@@ -5,7 +5,10 @@ import Link from "next/link";
 export default function Dashboard() {
   const links = [
     { href: "/dashboard/presentation", label: "Tout savoir, ou presque" },
-    { href: "/dashboard/projects", label: "Ils ont fait appel à mon expertise" },
+    {
+      href: "/dashboard/projects",
+      label: "Ils ont fait appel à mon expertise",
+    },
     { href: "/dashboard/contact", label: "On boit un café ?" },
   ];
   return (
@@ -13,7 +16,11 @@ export default function Dashboard() {
       {links.map((link) => (
         <PrimaryButton key={link.href}>
           <ArrowRight />
-          <Link key={link.href} href={link.href} aria-description={`link to ${link.label}`}>
+          <Link
+            key={link.href}
+            href={link.href}
+            aria-description={`link to ${link.label}`}
+          >
             {link.label}
           </Link>
         </PrimaryButton>
