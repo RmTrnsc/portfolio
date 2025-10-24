@@ -43,39 +43,39 @@ export default function Presentation() {
           .
         </p>
         <div className="grid justify-center items-center gap-2">
-          <PrimaryButton>
-            <ArrowUpRight />
-            <Link
-              href="https://www.fiverr.com/"
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center"
-            >
+          <Link
+            href="https://www.fiverr.com/"
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-center"
+          >
+            <PrimaryButton>
+              <ArrowUpRight />
               Fiverr
-            </Link>
-          </PrimaryButton>
-          <PrimaryButton>
-            <ArrowUpRight />
-            <Link
-              href="https://www.malt.fr/"
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center"
-            >
+            </PrimaryButton>
+          </Link>
+          <Link
+            href="https://www.malt.fr/"
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-center"
+          >
+            <PrimaryButton>
+              <ArrowUpRight />
               Malt
-            </Link>
-          </PrimaryButton>
-          <PrimaryButton>
-            <ArrowUpRight />
-            <Link
-              href="https://www.linkedin.com/in/romain-tournesac/"
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center"
-            >
+            </PrimaryButton>
+          </Link>
+          <Link
+            href="https://www.linkedin.com/in/romain-tournesac/"
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-center"
+          >
+            <PrimaryButton>
+              <ArrowUpRight />
               LinkedIn
-            </Link>
-          </PrimaryButton>
+            </PrimaryButton>
+          </Link>
         </div>
       </div>
     </main>

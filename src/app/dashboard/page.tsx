@@ -14,16 +14,17 @@ export default function Dashboard() {
   return (
     <main className="flex flex-col gap-4 justify-center items-center">
       {links.map((link) => (
-        <PrimaryButton key={link.href}>
-          <ArrowRight />
-          <Link
-            key={link.href}
-            href={link.href}
-            aria-description={`link to ${link.label}`}
-          >
+        <Link
+          key={link.href}
+          href={link.href}
+          aria-description={`link to ${link.label}`}
+          className="flex items-center"
+        >
+          <PrimaryButton key={link.href}>
+            <ArrowRight />
             {link.label}
-          </Link>
-        </PrimaryButton>
+          </PrimaryButton>
+        </Link>
       ))}
     </main>
   );
