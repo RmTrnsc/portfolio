@@ -13,7 +13,11 @@ export default async function ProjectPage({
     <div>
       <h1>{project?.title}</h1>
       <p>{project?.presentation}</p>
-      {project?.url ? <Link href={project.url}>Back to projects</Link> : null}
+      {project?.url && (
+        <Link href={project.url} target="_blank" rel="noreferrer">
+          Voir le projet en ligne
+        </Link>
+      )}
     </div>
   );
 }
