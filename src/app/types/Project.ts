@@ -4,4 +4,5 @@ export interface Project {
   presentation: string;
   published: boolean;
   slug: string;
+  pictures: { url: string }[];
 }
