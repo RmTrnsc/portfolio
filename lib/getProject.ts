@@ -9,7 +9,7 @@ export default async function getProject(slug: string) {
     },
     select: {
       title: true,
-      presentation: true,
+      contents: true,
       url: true,
       updatedAt: true,
       pictures: true,

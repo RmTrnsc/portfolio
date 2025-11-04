@@ -11,6 +11,7 @@ export default async function getProjects() {
         take: 1,
         orderBy: { id: "desc" },
       },
+      contents: true
     },
   });
 }

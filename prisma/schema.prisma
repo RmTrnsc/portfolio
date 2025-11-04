@@ -15,15 +15,15 @@ datasource db {
 }
 
 model Project {
-  id           Int       @id @default(autoincrement())
-  slug         String    @unique
-  title        String
-  presentation String
-  url          String
-  published    Boolean   @default(false)
-  pictures     Picture[]
-  createdAt    DateTime  @default(now())
-  updatedAt    DateTime  @updatedAt
+  id        Int       @id @default(autoincrement())
+  slug      String    @unique
+  title     String
+  url       String
+  published Boolean   @default(false)
+  contents  Content[]
+  pictures  Picture[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
 }
 
 model Picture {
@@ -33,4 +33,15 @@ model Picture {
   project   Project  @relation(fields: [projectId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Content {
+  id           Int      @id @default(autoincrement())
+  presentation String
+  request      String
+  constraints  String
+  projectId    Int
+  project      Project  @relation(fields: [projectId], references: [id])
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 }
