@@ -19,8 +19,8 @@ export default function Presentation() {
         </p>
         <p className="text-justify">
           J'aime travailler avec les dernières technologies et créer des
-          expériences utilisateur intuitives, qui correspondent à leurs besoins
-          et à leurs attentes.
+          expériences utilisateur intuitives, qui correspondent à vos besoins
+          et à vos attentes.
         </p>
         <p className="text-justify">
           Quand je ne code pas, j'aime me tenir au courant des nouveautés tech,
