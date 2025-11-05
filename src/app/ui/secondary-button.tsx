@@ -21,7 +21,7 @@ export default function SecondaryButton({
     <Button
       onClick={onClick}
       type={type}
-      className={`text-[var(--foreground)] bg-[var(--btn-bg-secondary)] border-[var(--btn-secondary-border)] mx-auto py-1 px-2 ${className}`}
+      className={`text-[var(--foreground)] bg-[var(--btn-bg-secondary)] border-[var(--btn-secondary-border)]! mx-auto py-1 px-2 ${className}`}
       disabled={disabled}
     >
       {children}
