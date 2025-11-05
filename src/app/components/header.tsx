@@ -1,6 +1,6 @@
 "use client";
 
-import ThemeIcon from "app/ui/theme";
+import { MoonIcon, SunIcon } from "@heroicons/react/16/solid";
 import { useState, useEffect } from "react";
 
 export default function Header() {
@@ -31,12 +31,25 @@ export default function Header() {
           className="rounded-4xl"
         />
         <p className="flex flex-col">
-          <span className="font-header font-extrabold text-3xl tracking-widest">Romain Tournesac</span>
+          <span className="font-header font-extrabold text-3xl tracking-widest">
+            Romain Tournesac
+          </span>
           <small className="italic">Développeur web fullstack</small>
         </p>
       </h1>
       <div>
-        <ThemeIcon isDarkMode={isDarkMode} onChange={setIsDarkMode} />
+        <label className="swap swap-rotate">
+          <input type="checkbox" />
+          <SunIcon
+            className="swap-on size-6"
+            onClick={() => setIsDarkMode(true)}
+          />
+
+          <MoonIcon
+            className="swap-off size-6"
+            onClick={() => setIsDarkMode(false)}
+          />
+        </label>
       </div>
     </header>
   );
