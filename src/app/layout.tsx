@@ -29,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${caveat.variable} ${lato.variable} grid grid-rows-[4em_1fr_2em] antialiased min-h-screen p-2 transition-colors duration-150`}
+        className={`${caveat.variable} ${lato.variable} grid grid-rows-[4em_1fr_2em] antialiased min-h-screen p-2 transition-all duration-150`}
       >
         <Header />
         {children}

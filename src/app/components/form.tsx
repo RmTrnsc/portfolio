@@ -77,9 +77,9 @@ export default function Form<T extends FieldValues>({
   return (
     <>
       <form onSubmit={handleSubmit(handleFormSubmit)}>
-        <Fieldset className="grid gap-4">
+        <Fieldset className="grid gap-[var(--content-gap)]">
           <Legend className="grid gap-2">
-            <h1 className="indent-4">{title}</h1>
+            <h1 className="indent-[var(--content-indent)]">{title}</h1>
             <p>{description}</p>
           </Legend>
           {fields

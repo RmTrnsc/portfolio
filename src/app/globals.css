@@ -18,6 +18,8 @@
   --navigation-foreground: #ffffff;
   --footer-background: #2a4d3a;
   --footer-foreground: #ffffff;
+  --content-gap: 1rem;
+  --content-indent: 1rem;
 }
 
 @theme inline {
@@ -44,6 +46,13 @@
   --footer-foreground: #61776b;
 }
 
+@media only screen and (min-width: 768px) {
+  :root {
+    --content-gap: 2.5rem;
+    --content-indent: 0rem;
+  }
+}
+
 body {
   background-color: var(--background);
   color: var(--foreground);
@@ -60,6 +69,7 @@ button {
   width: fit-content;
   font-size: 1.5rem;
   font-weight: 700;
+  cursor: pointer;
 }
 
 button,

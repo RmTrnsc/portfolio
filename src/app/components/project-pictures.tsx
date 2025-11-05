@@ -17,19 +17,19 @@ export default function ProjectPictures({
   const [pictureIndex, setPictureIndex] = useState<number>(0);
 
   return (
-    <div className="relative flex gap-4">
+    <div className="relative">
       <img
         key={pictureIndex}
         src={pictures[pictureIndex].url}
         alt={`Project picture ${pictureIndex + 1}`}
         className={`${
           currentIndex !== pictureIndex && "hidden"
-        } w-full rounded-2xl object-cover`}
+        } w-full rounded-2xl object-cover lg:w-[50%] lg:mx-auto`}
       />
       <div className="absolute z-50 top-1/2 w-full flex justify-between px-4">
         {currentIndex !== 0 && (
           <CustomButton
-            className="absolute left-4 bg-[var(--btn-bg-primary)] text-[#fffffb]"
+            className="absolute left-4 bg-[var(--btn-bg-primary)] text-[#fffffb] lg:left-36 xl:left-52"
             onClick={() => (
               setCurrentIndex(currentIndex - 1),
               setPictureIndex(pictureIndex - 1)
@@ -40,7 +40,7 @@ export default function ProjectPictures({
         )}
         {currentIndex < pictures.length - 1 && (
           <CustomButton
-            className="absolute right-4 bg-[var(--btn-bg-primary)] text-[#fffffb]"
+            className="absolute right-4 bg-[var(--btn-bg-primary)] text-[#fffffb] lg:right-36 xl:right-52"
             onClick={() => (
               setCurrentIndex(currentIndex + 1),
               setPictureIndex(pictureIndex + 1)

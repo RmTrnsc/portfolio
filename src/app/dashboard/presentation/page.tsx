@@ -4,9 +4,9 @@ import Link from "next/link";
 
 export default function Presentation() {
   return (
-    <main className="relative grid gap-8">
-      <div className="grid gap-3">
-        <p className="text-justify indent-4">
+    <div className="grid gap-6 md:my-10 md:w-1/2 md:mx-auto md:gap-20 xl:my-5">
+      <div className="grid gap-[var(--content-gap)]">
+        <p className="text-justify indent-[var(--content-indent)]">
           Je suis Romain, développeur passionné par la création d'applications
           web.
         </p>
@@ -19,19 +19,21 @@ export default function Presentation() {
         </p>
         <p className="text-justify">
           J'aime travailler avec les dernières technologies et créer des
-          expériences utilisateur intuitives, qui correspondent à vos besoins
-          et à vos attentes.
+          expériences utilisateur intuitives, qui correspondent à vos besoins et
+          à vos attentes.
         </p>
         <p className="text-justify">
           Quand je ne code pas, j'aime me tenir au courant des nouveautés tech,
           sortir avec mes amis, ma famille, jouer à des jeux vidéo...
         </p>
-        <p className="font-header text-2xl font-bold text-justify mx-auto">
+      </div>
+      <div>
+        <p className="font-header text-2xl font-bold text-center">
           Bienvenue sur mon portfolio et bonne visite !
         </p>
       </div>
-      <div className="grid gap-3">
-        <p className="text-justify italic">
+      <div className="grid gap-[var(--content-gap)]">
+        <p className="text-justify">
           Vous pouvez me contacter via les réseaux, ci-dessous, ou par email sur
           la page de{" "}
           <Link
@@ -42,7 +44,7 @@ export default function Presentation() {
           </Link>
           .
         </p>
-        <div className="grid justify-center items-center gap-2">
+        <div className="grid justify-center items-center gap-2 md:grid-cols-3">
           <Link
             href="https://www.fiverr.com/"
             target="_blank"
@@ -78,6 +80,6 @@ export default function Presentation() {
           </Link>
         </div>
       </div>
-    </main>
+    </div>
   );
 }

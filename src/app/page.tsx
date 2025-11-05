@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <main className="flex flex-col gap-20 justify-center">
       <div className="text-justify">
-        <p className="indent-4">
+        <p className="indent-4 md:w-1/2 md:mx-auto">
           Mon travail est d'aider les entreprises, comme les particuliers, à
           créer ou améliorer leurs visibilités sur Internet, au travers
           d'applications mobiles, de sites web, en utilisant les technologies
