@@ -4,6 +4,8 @@ import Link from "next/link";
 import ProjectPictures from "@/components/project-pictures";
 import ArrowUpRight from "app/ui/icons/arrowUpRight";
 import parse from "html-react-parser";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 export default async function ProjectPage({
   params,
@@ -15,34 +17,42 @@ export default async function ProjectPage({
 
   return (
     <div className="grid gap-6">
-      <h3 className="font-header text-4xl md:text-center">{project?.title}</h3>
-      <div className="grid gap-6 md:grid-cols-[55%_1fr] md:items-start">
-        <ProjectPictures pictures={project?.pictures || []} />
-        <div className="grid gap-6 md:relative md:grid-rows-4 md:items-center">
-          <p className="indent-4 md:indent-0">
-            {project?.contents
-              ? parse(project?.contents[0].presentation)
-              : null}
-          </p>
-          <p>{project?.contents ? parse(project.contents[0].request) : null}</p>
-          <p>
-            {project?.contents ? parse(project.contents[0].constraints) : null}
-          </p>
-          {project?.url && (
-            <Link
-              href={project.url}
-              target="_blank"
-              rel="noreferrer"
-              className="flex md:absolute md:bottom-0 md:left-0 md:right-0"
-            >
-              <PrimaryButton>
-                <ArrowUpRight />
-                Voir en ligne
-              </PrimaryButton>
-            </Link>
-          )}
+      <Suspense fallback={<Loading />}>
+        <h3 className="font-header text-4xl md:text-center">
+          {project?.title}
+        </h3>
+        <div className="grid gap-6 md:grid-cols-[55%_1fr] md:items-start">
+          <ProjectPictures pictures={project?.pictures || []} />
+          <div className="grid gap-6 md:relative md:grid-rows-4 md:items-center">
+            <span className="indent-4 md:indent-0">
+              {project?.contents
+                ? parse(project?.contents[0].presentation)
+                : null}
+            </span>
+            <span>
+              {project?.contents ? parse(project.contents[0].request) : null}
+            </span>
+            <span>
+              {project?.contents
+                ? parse(project.contents[0].constraints)
+                : null}
+            </span>
+            {project?.url && (
+              <Link
+                href={project.url}
+                target="_blank"
+                rel="noreferrer"
+                className="flex md:absolute md:bottom-0 md:left-0 md:right-0"
+              >
+                <PrimaryButton>
+                  <ArrowUpRight />
+                  Voir en ligne
+                </PrimaryButton>
+              </Link>
+            )}
+          </div>
         </div>
-      </div>
+      </Suspense>
     </div>
   );
 }

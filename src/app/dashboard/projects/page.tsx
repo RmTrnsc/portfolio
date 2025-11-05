@@ -4,13 +4,16 @@ import ArrowRight from "app/ui/icons/arrowRight";
 import PrimaryButton from "app/ui/primary-button";
 import Link from "next/link";
 import parse from "html-react-parser";
+import { Suspense } from "react";
+import { LoadingProjectsSkeleton } from "@/components/loading-skeleton";
 
 export default async function Projects() {
   const projects = (await getProjects()) as Project[];
 
   return (
     <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-      {projects.map((project) => (
+      <Suspense fallback={<LoadingProjectsSkeleton/>}>
+        {projects.map((project) => (
         <div key={project.id} className="grid gap-2">
           <h3 className="font-header text-3xl">{project.title}</h3>
           <div className="relative grid px-4 gap-4">
@@ -34,6 +37,7 @@ export default async function Projects() {
           </div>
         </div>
       ))}
+      </Suspense>
     </div>
   );
 }
