@@ -12,7 +12,7 @@ export default function Dashboard() {
     { href: "/dashboard/contact", label: "On boit un café ?" },
   ];
   return (
-    <main className="flex flex-col gap-4 justify-center items-center">
+    <div className="flex flex-col gap-4 justify-center items-center">
       {links.map((link) => (
         <Link
           key={link.href}
@@ -26,6 +26,6 @@ export default function Dashboard() {
           </PrimaryButton>
         </Link>
       ))}
-    </main>
+    </div>
   );
 }

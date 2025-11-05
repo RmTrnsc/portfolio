@@ -6,9 +6,9 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="grid grid-rows-[1em_1fr]">
+    <main className="relative flex flex-col justify-center">
       <Navigation />
       {children}
-    </div>
+    </main>
   );
 }

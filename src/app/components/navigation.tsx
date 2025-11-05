@@ -40,16 +40,15 @@ export default function Navigation() {
     );
 
   return (
-    <nav aria-label="Chemin de navigation">
-      <ol className="flex items-center gap-2 text-sm">
+    <div className="absolute top-0 left-0 right-0 breadcrumbs" aria-label="breadcrumbs">
+      <ul>
         <li>
           <Link href="/" className="!no-underline">
             Accueil
           </Link>
         </li>
         {segments.map((segment) => (
-          <li key={segment.path} className="flex items-baseline gap-2">
-            <span className="text-gray-400">/</span>
+          <li key={segment.path}>
             <Link
               href={segment.path}
               className={`${
@@ -60,7 +59,7 @@ export default function Navigation() {
             </Link>
           </li>
         ))}
-      </ol>
-    </nav>
+      </ul>
+    </div>
   );
 }
