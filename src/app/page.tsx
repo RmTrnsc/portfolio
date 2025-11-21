@@ -1,18 +1,21 @@
 "use client";
 
 import PrimaryButton from "./ui/primary-button";
-import Link from "next/link";
 import ArrowRight from "./ui/icons/arrowRight";
 import { gsap } from "gsap";
 import { SplitText } from "gsap/all";
 import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
   gsap.registerPlugin(SplitText);
   let tl = gsap.timeline({ defaults: { ease: "power1" } });
+  let container: any;
+  const router = useRouter();
 
   useEffect(() => {
-    gsap.set(".welcome-container", { opacity: 1 });
+    container = document.querySelector(".welcome-container");
+    gsap.set(container, { opacity: 1 });
     let split;
 
     SplitText.create(".welcome-content", {
@@ -38,6 +41,16 @@ export default function Home() {
     });
   });
 
+  const handleClick = () => {
+    tl.to(container, {
+      opacity: 0,
+      duration: 0.5,
+    });
+    setTimeout(() => {
+      router.push("/dashboard");
+    }, 500);
+  };
+
   return (
     <main className="welcome-container flex flex-col gap-20 justify-center">
       <div className="text-justify">
@@ -50,16 +63,16 @@ export default function Home() {
         </p>
       </div>
       <div className="flex justify-center">
-        <Link
-          href="/dashboard"
+        <div
           aria-describedby="link to dashboard"
           className="welcome-link flex items-center"
+          onClick={() => handleClick()}
         >
           <PrimaryButton>
             <ArrowRight />
             Commencer la visite
           </PrimaryButton>
-        </Link>
+        </div>
       </div>
     </main>
   );
