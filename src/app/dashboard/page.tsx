@@ -19,7 +19,7 @@ export default function Dashboard() {
   ];
 
   useEffect(() => {
-    waapi.animate(".link", {
+    waapi.animate(".link-content", {
       opacity: [0, 1],
       duration: 750,
       x: ["-5rem", "0rem"],
@@ -43,10 +43,10 @@ export default function Dashboard() {
         <div
           key={link.href}
           aria-description={`link to ${link.label}`}
-          className="link flex items-center"
+          className="link-content flex items-center"
           onClick={() => handleClick(link.href)}
         >
-          <PrimaryButton key={link.href}>
+          <PrimaryButton key={link.href} className="">
             <ArrowRight />
             {link.label}
           </PrimaryButton>
