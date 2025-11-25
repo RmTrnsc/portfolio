@@ -20,8 +20,8 @@ import {
 import { EnvelopeIcon } from "@heroicons/react/16/solid";
 import PrimaryButton from "app/ui/primary-button";
 import z from "zod";
-import { useState } from "react";
-import CustomButton from "app/ui/button";
+import { useEffect, useState } from "react";
+import { splitText, stagger, waapi } from "animejs";
 
 export interface FormField<T> {
   type: "text" | "email" | "tel" | "select" | "textarea";
@@ -55,6 +55,7 @@ export default function Form<T extends FieldValues>({
   submitText = "Envoyer",
 }: FormProps<T>) {
   const [isLoading, setIsLoading] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   const {
     control,
@@ -74,89 +75,130 @@ export default function Form<T extends FieldValues>({
     }
   };
 
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isMounted) return;
+
+    const { words } = splitText(".legend-content", {
+      words: { wrap: "visible" },
+    });
+
+    waapi.animate(words, {
+      opacity: [0, 1],
+      duration: 750,
+      easing: "ease-in-out",
+      delay: stagger(50),
+    });
+
+    waapi.animate(".field-container", {
+      opacity: [0, 1],
+      duration: 750,
+      x: ["-2rem", "0rem"],
+      easing: "ease-in-out",
+      delay: stagger(250, { start: 1500 }),
+    });
+
+    waapi.animate(".form-submit", {
+      opacity: [0, 1],
+      duration: 750,
+      x: ["-2rem", "0rem"],
+      easing: "ease-in-out",
+      delay: 2250 + fields.length * 100,
+    });
+  }, [isMounted]);
+
   return (
     <>
-      <form onSubmit={handleSubmit(handleFormSubmit)}>
-        <Fieldset className="grid gap-[var(--content-gap)]">
-          <Legend className="grid gap-2">
-            <h1 className="indent-[var(--content-indent)]">{title}</h1>
-            <p>{description}</p>
-          </Legend>
-          {fields
-            .filter((field) => field.show)
-            .map((field, index) => (
-              <Field key={index} className="grid gap-3">
-                <Label htmlFor={field.name}>{field.label}</Label>
-                {field.type === "select" ? (
-                  <Controller
-                    name={field.name}
-                    control={control}
-                    defaultValue={"" as any}
-                    render={({ field: { onChange, value } }) => (
-                      <Select
-                        name={field.name}
-                        required={field.validation.required}
-                        onChange={onChange}
-                        value={value || ""}
-                        className="border p-2"
-                      >
-                        <option value="">Sélectionnez un choix</option>
-                        {field.options?.map((option, idx) => (
-                          <option key={idx} value={option}>
-                            {option}
-                          </option>
-                        ))}
-                      </Select>
-                    )}
-                  ></Controller>
-                ) : field.type === "textarea" ? (
-                  <Controller
-                    name={field.name}
-                    control={control}
-                    render={({ field: { onChange, value } }) => (
-                      <Textarea
-                        name={field.name}
-                        required={field.validation.required}
-                        onChange={onChange}
-                        value={value || ""}
-                        className="border p-2"
-                      />
-                    )}
-                  />
-                ) : (
-                  <Controller
-                    name={field.name}
-                    control={control}
-                    render={({ field: { onChange, value } }) => (
-                      <Input
-                        type={field.type}
-                        name={field.name}
-                        required={field.validation.required}
-                        onChange={onChange}
-                        value={value || ""}
-                        className="border p-2"
-                      />
-                    )}
-                  />
-                )}
-                {errors[field.name] && (
-                  <p className="text-red-600">
-                    {errors[field.name]?.message?.toString() ??
-                      "Ce champ est invalide."}
-                  </p>
-                )}
-              </Field>
-            ))}
-          <PrimaryButton type="submit" disabled={isLoading}>
-            {isLoading ? (
-              <div className="animate-spin rounded-full size-5 border-t-2 border-white" />
-            ) : (
-              <EnvelopeIcon className="size-5 text-white" />
-            )}
-            {isLoading ? "Envoi en cours..." : submitText}
-          </PrimaryButton>
-        </Fieldset>
-      </form>
+      {isMounted && (
+        <form onSubmit={handleSubmit(handleFormSubmit)}>
+          <Fieldset className="grid gap-(--content-gap)">
+            <Legend className="legend-content grid gap-2">
+              <h1 className="">{title}</h1>
+              <p>{description}</p>
+            </Legend>
+            {fields
+              .filter((field) => field.show)
+              .map((field, index) => (
+                <Field key={index} className="field-container grid gap-3">
+                  <Label htmlFor={field.name}>{field.label}</Label>
+                  {field.type === "select" ? (
+                    <Controller
+                      name={field.name}
+                      control={control}
+                      defaultValue={"" as any}
+                      render={({ field: { onChange, value } }) => (
+                        <Select
+                          name={field.name}
+                          required={field.validation.required}
+                          onChange={onChange}
+                          value={value || ""}
+                          className="border p-2"
+                        >
+                          <option value="">Sélectionnez un choix</option>
+                          {field.options?.map((option, idx) => (
+                            <option key={idx} value={option}>
+                              {option}
+                            </option>
+                          ))}
+                        </Select>
+                      )}
+                    ></Controller>
+                  ) : field.type === "textarea" ? (
+                    <Controller
+                      name={field.name}
+                      control={control}
+                      render={({ field: { onChange, value } }) => (
+                        <Textarea
+                          name={field.name}
+                          required={field.validation.required}
+                          onChange={onChange}
+                          value={value || ""}
+                          className="border p-2"
+                        />
+                      )}
+                    />
+                  ) : (
+                    <Controller
+                      name={field.name}
+                      control={control}
+                      render={({ field: { onChange, value } }) => (
+                        <Input
+                          type={field.type}
+                          name={field.name}
+                          required={field.validation.required}
+                          onChange={onChange}
+                          value={value || ""}
+                          className="border p-2"
+                        />
+                      )}
+                    />
+                  )}
+                  {errors[field.name] && (
+                    <p className="text-red-600">
+                      {errors[field.name]?.message?.toString() ??
+                        "Ce champ est invalide."}
+                    </p>
+                  )}
+                </Field>
+              ))}
+            <PrimaryButton
+              className="form-submit"
+              type="submit"
+              disabled={isLoading}
+            >
+              {isLoading ? (
+                <div className="animate-spin rounded-full size-5 border-t-2 border-white" />
+              ) : (
+                <EnvelopeIcon className="size-5 text-white" />
+              )}
+              {isLoading ? "Envoi en cours ..." : submitText}
+            </PrimaryButton>
+          </Fieldset>
+        </form>
+      )}
     </>
   );
 }

@@ -6,8 +6,10 @@ import {
   DialogPanel,
   DialogTitle,
 } from "@headlessui/react";
+import { animate, set } from "animejs";
 import SecondaryButton from "app/ui/secondary-button";
 import { useRouter } from "next/navigation";
+import { useEffect, useRef } from "react";
 
 interface SuccessDialogProps {
   isOpen: boolean;
@@ -16,18 +18,63 @@ interface SuccessDialogProps {
 
 export default function SuccessDialog({ isOpen, onClose }: SuccessDialogProps) {
   const router = useRouter();
+  const dialogPanelRef = useRef<HTMLDivElement>(null);
+  const backdropRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (isOpen) {
+      const timer = setTimeout(() => {
+        if (backdropRef.current && dialogPanelRef.current) {
+          animate(backdropRef.current, {
+            opacity: [0, 1],
+            duration: 200,
+            easing: "ease-in-out",
+          });
+
+          animate(dialogPanelRef.current, {
+            opacity: [0, 1],
+            scale: [0.5, 1],
+            duration: 400,
+            delay: 100,
+            easing: "ease-in-out",
+          });
+        }
+      }, 50);
+
+      return () => clearTimeout(timer);
+    }
+  }, [isOpen]);
 
   const handleClose = () => {
     onClose();
-    router.push("/dashboard");
+    animate(".contact-container", {
+      opacity: [1, 0],
+      duration: 500,
+    });
+    setTimeout(() => {
+      router.push("/dashboard");
+    }, 500);
   };
 
   return (
-    <Dialog open={isOpen} onClose={onClose} className="relative z-50">
-      <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
+    <Dialog
+      open={isOpen}
+      onClose={onClose}
+      className="success-dialog relative z-50"
+    >
+      <div
+        ref={backdropRef}
+        className="fixed inset-0 bg-black/30"
+        style={{ opacity: 0 }}
+        aria-hidden="true"
+      />
 
       <div className="fixed inset-0 flex items-center justify-center p-4">
-        <DialogPanel className="mx-auto max-w-sm rounded-2xl bg-[var(--card-background)] p-6">
+        <DialogPanel
+          ref={dialogPanelRef}
+          className="success-dialog-panel mx-auto max-w-sm rounded-2xl bg-(--card-background) p-6"
+          style={{ opacity: 0, transform: "scale(0.7)" }}
+        >
           <DialogTitle className="text-3xl font-header mb-2">
             Message envoyé !
           </DialogTitle>

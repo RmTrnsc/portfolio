@@ -96,7 +96,7 @@ export default function Contact() {
   ];
 
   return (
-    <div className="mx-auto md:w-1/2">
+    <div className="contact-container mx-auto md:w-1/2">
       <Form<ContactFormData>
         title="Un nouveau projet, une évolution de vos besoins ou tout simplement une question ?"
         description="Alors ce formulaire est fait pour vous, je vous répondrai dans les plus brefs délais !"

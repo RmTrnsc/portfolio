@@ -59,7 +59,7 @@ export default function Presentation() {
   return (
     <div className="presentation-container grid gap-6 md:my-10 md:w-1/2 md:mx-auto md:gap-20 xl:my-5">
       <div className="grid gap-(--content-gap)">
-        <p className="text-justify indent-(--content-indent)">
+        <p className="text-justify">
           Je suis Romain, développeur passionné par la création d'applications
           web.
         </p>
