@@ -1,12 +1,65 @@
+"use client";
+
+import { splitText, stagger, animate, waapi } from "animejs";
 import ArrowUpRight from "app/ui/icons/arrowUpRight";
 import PrimaryButton from "app/ui/primary-button";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function Presentation() {
+  const router = useRouter();
+  useEffect(() => {
+    const container = document.querySelector(".presentation-container");
+    container?.querySelectorAll<HTMLParagraphElement>("p").forEach(($el) => {
+      $el.classList.add("presentation-content");
+    });
+
+    let cumulativeDelay = 0;
+
+    document.querySelectorAll(".presentation-content").forEach(($el) => {
+      const { words } = splitText($el as HTMLElement, {
+        words: { wrap: "visible" },
+      });
+      const wordCount = words.length;
+      const duration = 750;
+      const delayBetweenWords = 50;
+      const totalAnimationDuration =
+        duration + (wordCount - 1) * delayBetweenWords;
+
+      animate(words, {
+        opacity: [0, 1],
+        duration: 750,
+        easing: "ease-in-out",
+        delay: stagger(50, { start: cumulativeDelay }),
+      });
+
+      cumulativeDelay += totalAnimationDuration + 10;
+    });
+
+    waapi.animate(".link-content", {
+      opacity: [0, 1],
+      duration: 750,
+      x: ["-5rem", "0rem"],
+      easing: "ease-in-out",
+      delay: stagger(500, { start: cumulativeDelay }),
+    });
+  }, []);
+
+  const handleClick = (href: string) => {
+    animate(".presentation-container", {
+      opacity: [1, 0],
+      duration: 500,
+    });
+    setTimeout(() => {
+      router.push(href);
+    }, 500);
+  };
+
   return (
-    <div className="grid gap-6 md:my-10 md:w-1/2 md:mx-auto md:gap-20 xl:my-5">
-      <div className="grid gap-[var(--content-gap)]">
-        <p className="text-justify indent-[var(--content-indent)]">
+    <div className="presentation-container grid gap-6 md:my-10 md:w-1/2 md:mx-auto md:gap-20 xl:my-5">
+      <div className="grid gap-(--content-gap)">
+        <p className="text-justify indent-(--content-indent)">
           Je suis Romain, développeur passionné par la création d'applications
           web.
         </p>
@@ -32,24 +85,24 @@ export default function Presentation() {
           Bienvenue sur mon portfolio et bonne visite !
         </p>
       </div>
-      <div className="grid gap-[var(--content-gap)]">
+      <div className="grid gap-(--content-gap)">
         <p className="text-justify">
           Vous pouvez me contacter via les réseaux, ci-dessous, ou par email sur
           la page de{" "}
-          <Link
-            href="/dashboard/contact"
-            className="font-action text-2xl underline underline-offset-2"
+          <span
+            onClick={() => handleClick("/dashboard/contact")}
+            className="font-action text-2xl underline underline-offset-2 cursor-pointer"
           >
             contact
-          </Link>
+          </span>
           .
         </p>
-        <div className="grid justify-center items-center gap-2 md:grid-cols-3">
+        <div className="links-container grid justify-center items-center gap-2 md:grid-cols-3">
           <Link
             href="https://www.fiverr.com/"
             target="_blank"
             rel="noreferrer"
-            className="flex items-center"
+            className="link-content flex items-center"
           >
             <PrimaryButton>
               <ArrowUpRight />
@@ -60,7 +113,7 @@ export default function Presentation() {
             href="https://www.malt.fr/"
             target="_blank"
             rel="noreferrer"
-            className="flex items-center"
+            className="link-content flex items-center"
           >
             <PrimaryButton>
               <ArrowUpRight />
@@ -71,7 +124,7 @@ export default function Presentation() {
             href="https://www.linkedin.com/in/romain-tournesac/"
             target="_blank"
             rel="noreferrer"
-            className="flex items-center"
+            className="link-content flex items-center"
           >
             <PrimaryButton>
               <ArrowUpRight />
