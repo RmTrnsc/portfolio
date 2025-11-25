@@ -1,14 +1,20 @@
-export function LoadingProjectsSkeleton() {
+"use client";
+
+export function LoadingProjectsSkeleton({ projectsLength = 3 }: { projectsLength?: number }) {
+  const skeletons = Array.from({ length: projectsLength }, (_, i) => i);
+
   return (
-    <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-      <div className="grid gap-2">
-        <div className="skeleton rounded-2xl h-9 w-28"></div>
-        <div className="relative grid px-4 gap-4">
-          <div className="skeleton rounded-2xl h-20 absolute w-3/4 left-4"></div>
-          <div className="skeleton rounded-2xl h-56 mt-7 w-full max-w-4/5 mx-auto"></div>
-          <div className="skeleton rounded-2xl h-12 w-36 mx-auto"></div>
+    <div className="loading-container grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+      {skeletons.map((index) => (
+        <div key={index} className="grid gap-2">
+          <div className="skeleton rounded-2xl h-9 w-28"></div>
+          <div className="relative grid px-4 gap-4">
+            <div className="skeleton rounded-2xl h-20 absolute w-3/4 left-4"></div>
+            <div className="skeleton rounded-2xl h-56 mt-7 w-full max-w-4/5 mx-auto"></div>
+            <div className="skeleton rounded-2xl h-12 w-36 mx-auto"></div>
+          </div>
         </div>
-      </div>
+      ))}
     </div>
   );
 }
