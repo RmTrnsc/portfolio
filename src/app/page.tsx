@@ -1,44 +1,31 @@
 "use client";
 
-import PrimaryButton from "./ui/primary-button";
-import ArrowRight from "./ui/icons/arrowRight";
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import { animate, splitText, stagger } from "animejs";
+import ButtonLink from "./ui/button-link";
 
 export default function Home() {
-  const router = useRouter();
+  const [totalAnimationDuration, setTotalAnimationDuration] = useState(0);
+  let animation: any;
 
   useEffect(() => {
     const { words } = splitText(".welcome-content", {
       words: { wrap: "clip" },
     });
 
-    animate(words, {
+    const wordCount = words.length;
+    const duration = 750;
+    const delayBetweenWords = 50;
+    const calculatedDuration = duration + (wordCount - 1) * delayBetweenWords;
+    setTotalAnimationDuration(calculatedDuration);
+
+    animation = animate(words, {
       opacity: [0, 1],
       duration: 750,
       easing: "ease-in-out",
       delay: stagger(50),
     });
-
-    animate(".welcome-link", {
-      opacity: [0, 1],
-      duration: 750,
-      x: ["-5rem", "0rem"],
-      easing: "ease-in-out",
-      delay: 2000,
-    });
-  });
-
-  const handleClick = () => {
-    animate(".welcome-container", {
-      opacity: [1, 0],
-      duration: 500,
-    });
-    setTimeout(() => {
-      router.push("/dashboard");
-    }, 500);
-  };
+  }, []);
 
   return (
     <main className="welcome-container flex flex-col gap-20 justify-center">
@@ -51,16 +38,12 @@ export default function Home() {
           à leurs besoins.
         </p>
       </div>
-      <div
-        aria-describedby="link to dashboard"
-        className="welcome-link flex items-center"
-        onClick={() => handleClick()}
-      >
-        <PrimaryButton>
-          <ArrowRight />
-          Commencer la visite
-        </PrimaryButton>
-      </div>
+      <ButtonLink
+        url="/dashboard"
+        text="Commencer la visite"
+        totalAnimationDuration={totalAnimationDuration}
+        animation={animation}
+      />
     </main>
   );
 }

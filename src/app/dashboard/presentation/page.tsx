@@ -1,14 +1,14 @@
 "use client";
 
-import { splitText, stagger, animate, waapi } from "animejs";
-import ArrowUpRight from "app/ui/icons/arrowUpRight";
-import PrimaryButton from "app/ui/primary-button";
-import Link from "next/link";
+import { splitText, stagger, animate } from "animejs";
+import ButtonLink from "app/ui/button-link";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function Presentation() {
   const router = useRouter();
+  const [cumulativeDelay, setCumulativeDelay] = useState(0);
+  
   useEffect(() => {
     const container = document.querySelector(".presentation-container");
     container?.querySelectorAll<HTMLParagraphElement>("p").forEach(($el) => {
@@ -34,15 +34,7 @@ export default function Presentation() {
         delay: stagger(50, { start: cumulativeDelay }),
       });
 
-      cumulativeDelay += totalAnimationDuration + 10;
-    });
-
-    waapi.animate(".link-content", {
-      opacity: [0, 1],
-      duration: 750,
-      x: ["-5rem", "0rem"],
-      easing: "ease-in-out",
-      delay: stagger(500, { start: cumulativeDelay }),
+      setCumulativeDelay((cumulativeDelay += totalAnimationDuration + 10));
     });
   }, []);
 
@@ -98,39 +90,27 @@ export default function Presentation() {
           .
         </p>
         <div className="links-container grid justify-center items-center gap-2 md:grid-cols-3">
-          <Link
-            href="https://www.fiverr.com/"
-            target="_blank"
-            rel="noreferrer"
-            className="link-content flex items-center"
-          >
-            <PrimaryButton>
-              <ArrowUpRight />
-              Fiverr
-            </PrimaryButton>
-          </Link>
-          <Link
-            href="https://www.malt.fr/"
-            target="_blank"
-            rel="noreferrer"
-            className="link-content flex items-center"
-          >
-            <PrimaryButton>
-              <ArrowUpRight />
-              Malt
-            </PrimaryButton>
-          </Link>
-          <Link
-            href="https://www.linkedin.com/in/romain-tournesac/"
-            target="_blank"
-            rel="noreferrer"
-            className="link-content flex items-center"
-          >
-            <PrimaryButton>
-              <ArrowUpRight />
-              LinkedIn
-            </PrimaryButton>
-          </Link>
+          <ButtonLink
+            url="https://www.fiverr.com"
+            text="Fiverr"
+            stagger={500}
+            totalAnimationDuration={cumulativeDelay}
+            blank={true}
+          />
+          <ButtonLink
+            url="https://www.malt.fr"
+            text="Malt"
+            stagger={500}
+            totalAnimationDuration={cumulativeDelay}
+            blank={true}
+          />
+          <ButtonLink
+            url="https://www.linkedin.com/in/romain-tournesac/"
+            text="LinkedIn"
+            stagger={500}
+            totalAnimationDuration={cumulativeDelay}
+            blank={true}
+          />
         </div>
       </div>
     </div>
