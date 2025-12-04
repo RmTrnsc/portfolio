@@ -23,7 +23,7 @@ export function LoadingProjectSkeleton() {
   return (
     <div className="grid gap-6">
       <div className="rounded-2xl skeleton h-8 w-28 md:mx-auto"></div>
-      <div className="grid gap-6 md:grid-cols-[55%_1fr] md:items-start">
+      <div className="grid gap-6 md:grid-cols-[55%_1fr] md:items-center">
         <div className="skeleton rounded-2xl h-96 md:w-[55%] md:mx-auto"></div>
         <div className="grid gap-6 md:relative md:grid-rows-4 md:items-center">
           <div className="skeleton rounded-2xl h-8 w-full"></div>

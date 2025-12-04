@@ -21,7 +21,7 @@ export default function PrimaryButton({
     <Button
       onClick={onClick}
       type={type}
-      className={`text-[#fffffb] bg-[var(--btn-bg-primary)] mx-auto py-1 px-2 ${className}`}
+      className={`text-[#fffffb] bg-(--btn-bg-primary) mx-auto py-1 px-2 transition-all ${className}`}
       disabled={disabled}
     >
       {children}

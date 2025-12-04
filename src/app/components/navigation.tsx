@@ -43,7 +43,7 @@ export default function Navigation() {
     <div className="absolute top-0 left-0 right-0 breadcrumbs" aria-label="breadcrumbs">
       <ul>
         <li>
-          <Link href="/" className="!no-underline">
+          <Link href="/" className="no-underline!">
             Accueil
           </Link>
         </li>
@@ -52,8 +52,8 @@ export default function Navigation() {
             <Link
               href={segment.path}
               className={`${
-                pathname === segment.path ? "!font-action text-xl" : ""
-              } !no-underline`}
+                pathname === segment.path ? "font-action text-xl" : ""
+              } no-underline!`}
             >
               {segment.label}
             </Link>
