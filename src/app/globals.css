@@ -29,7 +29,7 @@
   --font-action: var(--font-caveat);
 }
 
-[data-theme="dark"] {
+.dark {
   --background: #2a4d3a;
   --foreground: #fffffb;
   --secondary-foreground: #d8d8d8;

@@ -3,6 +3,7 @@ import { Lato, Caveat } from "next/font/google";
 import "./globals.css";
 import Header from "./components/header";
 import Footer from "./components/footer";
+import { ThemeProvider } from "./components/theme-provider";
 
 const caveat = Caveat({
   variable: "--font-caveat",
@@ -27,12 +28,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${caveat.variable} ${lato.variable} grid grid-rows-[4em_1fr_2em] antialiased min-h-screen p-2 transition-all duration-150`}
       >
-        <Header />
-        {children}
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <Header />
+          {children}
+        </ThemeProvider>
         <Footer />
       </body>
     </html>
